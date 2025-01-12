@@ -7,10 +7,15 @@ import {
 import { Group, IconButton } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-import usePlatforms from '../hooks/usePlatforms';
+import usePlatforms, { Platform } from '../hooks/usePlatforms';
 import { useState } from 'react';
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data: platforms, error } = usePlatforms();
   const [isExpended, setIsExpended] = useState<Boolean>(false);
 
@@ -21,7 +26,7 @@ const PlatformSelector = () => {
       <MenuTrigger asChild>
         <Group attached onClick={() => setIsExpended(!isExpended)}>
           <Button variant='outline' size='sm'>
-            Platforms
+            {selectedPlatform?.name || 'Platforms'}
           </Button>
           <IconButton variant='outline' size='sm'>
             {isExpended ? <BsChevronLeft /> : <BsChevronRight />}
@@ -30,7 +35,11 @@ const PlatformSelector = () => {
       </MenuTrigger>
       <MenuContent>
         {platforms.map((platform) => (
-          <MenuItem key={platform.id} value={platform.name}>
+          <MenuItem
+            key={platform.id}
+            value={platform.name}
+            onClick={() => onSelectPlatform(platform)}
+          >
             {platform.name}
           </MenuItem>
         ))}
