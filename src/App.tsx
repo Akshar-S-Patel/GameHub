@@ -2,8 +2,12 @@ import { Grid, GridItem, Stack } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
+import { useState } from 'react';
+import { Genre } from './hooks/useGenres';
 
 const App = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
   return (
     // breakpoints
     //   "2xl": "96em" --> 4K
@@ -28,11 +32,11 @@ const App = () => {
       <Stack hideBelow='lg'>
         {/* Only show this item in xl and 2xl */}
         <GridItem area='aside' paddingX={5}>
-          <GenreList />
+          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Stack>
       <GridItem area='main'>
-        <GameGrid />
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );
