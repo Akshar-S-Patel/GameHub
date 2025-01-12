@@ -22,7 +22,10 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   if (error) return null;
 
   return (
-    <MenuRoot positioning={{ placement: 'right-start' }}>
+    <MenuRoot
+      positioning={{ placement: 'right-start' }}
+      onInteractOutside={() => setIsExpended(false)}
+    >
       <MenuTrigger asChild>
         <Group attached onClick={() => setIsExpended(!isExpended)}>
           <Button variant='outline' size='sm'>
@@ -38,7 +41,10 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
           <MenuItem
             key={platform.id}
             value={platform.name}
-            onClick={() => onSelectPlatform(platform)}
+            onClick={() => {
+              onSelectPlatform(platform);
+              setIsExpended(false);
+            }}
           >
             {platform.name}
           </MenuItem>
