@@ -32,7 +32,10 @@ const App = () => {
       <Stack hideBelow='lg'>
         {/* Only show this item in xl and 2xl */}
         <GridItem area='aside' paddingX={5}>
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            selectedGenre={selectedGenre}
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
       </Stack>
       <GridItem area='main'>
