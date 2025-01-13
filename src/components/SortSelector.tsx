@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/menu';
 import { Group, IconButton } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { useState } from 'react';
 
 const SortSelector = () => {
@@ -21,17 +21,14 @@ const SortSelector = () => {
   ];
 
   return (
-    <MenuRoot
-      positioning={{ placement: 'right-start' }}
-      onInteractOutside={() => setIsExpended(false)}
-    >
+    <MenuRoot onInteractOutside={() => setIsExpended(false)}>
       <MenuTrigger asChild>
         <Group attached onClick={() => setIsExpended(!isExpended)}>
           <Button variant='outline' size='sm'>
             Order by: Relevance
           </Button>
           <IconButton variant='outline' size='sm'>
-            {isExpended ? <BsChevronLeft /> : <BsChevronRight />}
+            {isExpended ? <BsChevronDown /> : <BsChevronUp />}
           </IconButton>
         </Group>
       </MenuTrigger>

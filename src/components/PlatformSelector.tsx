@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/menu';
 import { Group, IconButton } from '@chakra-ui/react';
 import { Button } from '@/components/ui/button';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import usePlatforms, { Platform } from '../hooks/usePlatforms';
 import { useState } from 'react';
 
@@ -22,17 +22,14 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   if (error) return null;
 
   return (
-    <MenuRoot
-      positioning={{ placement: 'right-start' }}
-      onInteractOutside={() => setIsExpended(false)}
-    >
+    <MenuRoot onInteractOutside={() => setIsExpended(false)}>
       <MenuTrigger asChild>
         <Group attached onClick={() => setIsExpended(!isExpended)}>
           <Button variant='outline' size='sm'>
             {selectedPlatform?.name || 'Platforms'}
           </Button>
           <IconButton variant='outline' size='sm'>
-            {isExpended ? <BsChevronLeft /> : <BsChevronRight />}
+            {isExpended ? <BsChevronDown /> : <BsChevronUp />}
           </IconButton>
         </Group>
       </MenuTrigger>
