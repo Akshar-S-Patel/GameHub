@@ -16,7 +16,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
       <>
         <Text>{'Unable to fetch Genres.'}</Text>
         <br />
-        <Text>{error}</Text>
+        <Text>{error.message}</Text>
       </>
     );
 
@@ -28,7 +28,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
         Genres
       </Heading>
       <List.Root variant='plain'>
-        {genres.map((genre) => (
+        {genres.results.map((genre) => (
           <List.Item key={genre.id} paddingY='5px'>
             <HStack>
               <Image
