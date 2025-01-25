@@ -12,14 +12,18 @@ import { useState } from 'react';
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatformId?: number;
 }
 
-const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
   const { data: platforms, error } = usePlatforms();
   const [isExpended, setIsExpended] = useState<Boolean>(false);
 
   if (error) return null;
+
+  const selectedPlatform = platforms?.results.find(
+    (p) => p.id === selectedPlatformId
+  );
 
   return (
     <MenuRoot onInteractOutside={() => setIsExpended(false)}>
