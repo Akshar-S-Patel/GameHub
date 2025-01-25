@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import usePlatforms, { Platform } from '../hooks/usePlatforms';
 import { useState } from 'react';
+import usePlatform from '@/hooks/usePlatform';
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
@@ -21,9 +22,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
 
   if (error) return null;
 
-  const selectedPlatform = platforms?.results.find(
-    (p) => p.id === selectedPlatformId
-  );
+  const selectedPlatform = usePlatform(selectedPlatformId);
 
   return (
     <MenuRoot onInteractOutside={() => setIsExpended(false)}>
