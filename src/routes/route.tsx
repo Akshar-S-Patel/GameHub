@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage';
 import Layout from '../pages/Layout';
 import ErrorPage from '@/pages/ErrorPage';
 import AboutUsPage from '@/pages/AboutUsPage';
+import ContactUsPage from '@/pages/ContactUsPage';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'games/:slug', element: <GameDetailPage /> },
       { path: 'about-us', element: <AboutUsPage /> },
+      { path: 'contact-us', element: <ContactUsPage /> },
     ],
   },
 ]);
